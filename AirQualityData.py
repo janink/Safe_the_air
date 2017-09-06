@@ -1,6 +1,8 @@
 
 import json
 import urllib2
+import xlsxwriter
+
 
 class QualityData:
     def __init__(self, city):
@@ -34,15 +36,30 @@ class QualityData:
                             #print(el['@AirQualityIndex'])
                     elif type(authority['Site']['Species']) == dict:
                         max_list.append(authority['Site']['Species']['@AirQualityIndex'])
-                        #print(authority['Site']['Species']['@AirQualityIndex'])
 
                     else:
                         print "2", authority
 
             else:
                 max_list.append(1)
-                print "3", authority
+                #print "3", authority
 
             export_data[authority[u'@LocalAuthorityName']] = max(max_list)
-        write(export_data
-        print len(export_data)
+        QualityData.write_to_excel(self,export_data)
+
+
+    def write_to_excel(self,data):
+        workbook = xlsxwriter.Workbook('data.xlsx')
+        worksheet = workbook.add_worksheet()
+
+        row = 0
+        col = 0
+
+        for key in data.keys():
+            worksheet.write(row, col, key)
+            for item in data[key]:
+                worksheet.write(row, col + 1, item)
+                row += 1
+
+        workbook.close()
+
