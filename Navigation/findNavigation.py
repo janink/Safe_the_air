@@ -28,7 +28,8 @@ class Roadstatus:
 class Neighboor:
     def __init__(self, hasNeighboor):
         self.hasNeighboor = hasNeighboor
-        
+
+'''        
 def getNeighboors(sheet):
     try:
         with open("pickle/neighboorsDictionary.txt", "rb") as myFile:
@@ -43,8 +44,9 @@ def getNeighboors(sheet):
         with open("pickle/neighboorsDictionary.txt", "wb") as myFile:
             pickle.dump(neighboorsDictionary, myFile)
     return neighboorsDictionary
+'''
 
-def getLondonData(sheet, neighboorsDictionary):
+def getLondonData(sheet):#, neighboorsDictionary):
     try:
         with open("pickle/londonDataDictionary.txt", "rb") as myFile:
             londonDataDictionary = pickle.load(myFile)
@@ -55,10 +57,10 @@ def getLondonData(sheet, neighboorsDictionary):
             streetName = sheet['D'+str(i)].value
             area = sheet['G'+str(i)].value
             roadStatus = sheet['H'+str(i)].value
-            neighboors = neighboorsDictionary[str(sheet['A'+str(i)].value)]
+            neighboors = 1#neighboorsDictionary[str(sheet['A'+str(i)].value)]
             lat = sheet['E'+str(i)].value
             long = sheet['F'+str(i)].value
-            roadStatusDictionary[str(sheet['A'+str(i)].value)] = London(streetID, streetName, area, roadStatus, neighboors, lat, long)      
+            londonDataDictionary[str(sheet['A'+str(i)].value)] = London(streetID, streetName, area, roadStatus, neighboors, lat, long)      
         with open("pickle/londonDataDictionary.txt", "wb") as myFile:
             pickle.dump(londonDataDictionary, myFile)
     return londonDataDictionary
@@ -151,8 +153,8 @@ def findPathEnvironment(start, goal, londonData, shortestPath):
 
 #-------------------------run---------------------------------------
 
-neighboorsDictionary = getNeighboors(neighboors)
-londonDataDictionary = getLondonData(london, neighboorsDictionary)
+#neighboorsDictionary = getNeighboors(neighboors)
+londonDataDictionary = getLondonData(london), #neighboorsDictionary)
 roadStatusDictionary = getRoadStatus(london)
 
 start = '331357'
