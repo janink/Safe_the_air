@@ -38,20 +38,27 @@ def getNeighboors(sheet):
         for i in range(2, sheet.max_row+1):
             neighboorsList.append(sheet['B'+str(i)].value)
             if sheet['A'+str(i)].value != sheet['A'+str(i+1)].value:
-                neighboorsDictionary[sheet['A'+str(i)].value] =  Neighboor(neighboorsList)
+                neighboorsDictionary[str(sheet['A'+str(i)].value)] =  Neighboor(neighboorsList)
                 neighboorsList = []
         with open("pickle/neighboorsDictionary.txt", "wb") as myFile:
             pickle.dump(neighboorsDictionary, myFile)
     return neighboorsDictionary
 
-def getLondonData(sheet):
+def getLondonData(sheet, neighboorsDictionary):
     try:
         with open("pickle/londonDataDictionary.txt", "rb") as myFile:
             londonDataDictionary = pickle.load(myFile)
     except:
         londonDataDictionary = {}
         for i in range(2, sheet.max_row+1):
-            
+            streetID = sheet['A'+str(i)].value
+            streetName = sheet['D'+str(i)].value
+            area = sheet['G'+str(i)].value
+            roadStatus = sheet['H'+str(i)].value
+            neighboors = neighboorsDictionary[str(sheet['A'+str(i)].value)]
+            lat = sheet['E'+str(i)].value
+            long = sheet['F'+str(i)].value
+            roadStatusDictionary[str(sheet['A'+str(i)].value)] = London(streetID, streetName, area, roadStatus, neighboors, lat, long)      
         with open("pickle/londonDataDictionary.txt", "wb") as myFile:
             pickle.dump(londonDataDictionary, myFile)
     return londonDataDictionary
@@ -62,10 +69,9 @@ def getRoadStatus(sheet):
             roadStatusDictionary = pickle.load(myFile)
     except:
         roadStatusDictionary = {}
-        listOptions = [None, 'green', 'yellow', 'red']
+        listOptions = [None, 'G', 'Y', 'R']
         for i in range(2, sheet.max_row+1):
-            if 
-            roadStatusDictionary[sheet['A'+str(i)].value]
+            roadStatusDictionary[str(sheet['A'+str(i)].value)] = Roadstatus(listOptions[sheet['H'+str(i)].value])
         with open("pickle/roadStatusDictionary.txt", "wb") as myFile:
             pickle.dump(roadStatusDictionary, myFile)
     return roadStatusDictionary
@@ -96,24 +102,61 @@ def findshortestPath(start, goal, londonData):
     pathList.append(goal)
     return pathList
 
+def getClosestNeighboorWithErrorList(neighboors, point, goalLat, goalLong, londonData, errorList):
+    closestNeighboor = point
+    closestDistance = math.inf
+    for i in range(len(neighboors)):
+        if neighboors[i] in errorList:
+            continue
+        a = (londonData[neighboors[i]].lat, goalLat)
+        b = (londonData[neighboors[i]].long, goalLong)
+        dst = distance.euclidean(a,b)
+        if closestDistance > dst:
+            closestDistance = dst
+            closestNeighboor = neighboors[i]
+    return closestNeighboor   
 
-def findAlternativePathPart():
-    
-    return
+def findAlternativePathPart(start, goal, londonData):
+    pathList = [start]
+    goalLat = londonData[goal].lat
+    goalLong = londonData[goal].long
+    point = start
+    while point != goal:
+        if goal in londonData[point].neighboors:
+            break
+        closestNeighboor = getClosestNeighboor(londonData[point].neighboors, point, goalLat, goalLong, londonData)      
+        pathList.append(closestNeighboor)
+        point = closestNeighboor
+    pathList.append(goal)
+    return pathList
 
 def findPathEnvironment(start, goal, londonData, shortestPath):
-    
-    return pathList
+    environmentalPath = shortestPath
+    StillRed = True
+    errorlist = []
+    while StillRed == True:
+        for i in range(len(environmentalPath)):
+            if environmentalPath[i] == red:
+                StillRed == True
+                break
+            StillRed = False
+        errorlist.append(environmentalPath[i])
+        environmentalPath = environmentalPath[0:i]
+        pathRest = findAlternativePathPart(start, goal, londonData)
+        for j in range(len(pathRest)):
+            environmentalPath.appnd(pathRest[j])
+    environmentalPath.append(goal)
+    return environmentalPath
 
 
 #-------------------------run---------------------------------------
 
 neighboorsDictionary = getNeighboors(neighboors)
-londonDataDictionary = getLondonData(london)
+londonDataDictionary = getLondonData(london, neighboorsDictionary)
 roadStatusDictionary = getRoadStatus(london)
 
-start = startID #= roadID 331357
-goal = goalID #= roadID 8653432
+start = '331357'
+goal = '8653432'
 
-shortestPath = findPath(startID, goalID, londonDataDictionary)
-environmentPath = findPathEnvironment(startID, goalID, londonDataDictionary, shortestPath)
+shortestPath = findshortestPath(start, goal, londonDataDictionary)
+environmentPath = findPathEnvironment(londonDataDictionary, shortestPath)

@@ -5,14 +5,14 @@ import subprocess
 from Ardurino import *
 
 neighboorsDictionary = getNeighboors(neighboors)
-londonDataDictionary = getLondonData(london)
+londonDataDictionary = getLondonData(london, neighboorsDictionary)
 roadStatusDictionary = getRoadStatus(london)
 
-start = startID #= roadID 331357
-goal = goalID #= roadID 8653432
+start = '331357'
+goal = '8653432'
 
-shortestPath = findPath(startID, goalID, londonDataDictionary)
-environmentPath = findPathEnvironment(startID, goalID, londonDataDictionary, shortestPath)
+shortestPath = findshortestPath(start, goal, londonDataDictionary)
+environmentPath = findPathEnvironment(londonDataDictionary, shortestPath)
 
 
 for i in range(len(environmentPath)):
@@ -20,6 +20,6 @@ for i in range(len(environmentPath)):
     navigation = londonDataDictionary[environmentPath].streetName
     ArdurinoRun(color, navigation)    
     while True:
-        time.sleep(7)   # Delay for 1 minute (7 seconds).
+        time.sleep(3)   # Delay for 1 minute (7 seconds).
         
         
