@@ -31,9 +31,10 @@ def streetNameShow(streetname):
     ard.LCD(streetname)
 
 def ArduinoRun(color, streetname):
+    print color
     onOffFunction(color)
-    streetNameShow(streetname)
+    #streetNameShow(streetname)
 
 
 
-ArduinoRun('Y', 'street1')
+#ArduinoRun('Y', 'street1')
