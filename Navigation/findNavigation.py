@@ -142,5 +142,5 @@ roadStatusDictionary = getRoadStatus(london)
 start = '331357'
 goal = '8653432'
 
-shortestPath = findshortestPath(start, goal, londonDataDictionary)
-environmentPath = findPathEnvironment(londonDataDictionary, shortestPath)
+#shortestPath = findshortestPath(start, goal, londonDataDictionary)
+#environmentPath = findPathEnvironment(londonDataDictionary, shortestPath)
