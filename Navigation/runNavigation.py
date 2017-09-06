@@ -2,10 +2,10 @@ import openpyxl
 import time
 from findNavigation import *
 import subprocess
-from Ardurino import *
+from Arduino import *
 
-neighboorsDictionary = getNeighboors(neighboors)
-londonDataDictionary = getLondonData(london, neighboorsDictionary)
+#neighboorsDictionary = getNeighboors(neighboors)
+londonDataDictionary = getLondonData(london) #neighboorsDictionary)
 roadStatusDictionary = getRoadStatus(london)
 
 '''
@@ -21,7 +21,7 @@ environmentPath = ['331357', '2495341', '2495342', '2495343', '2495344', '249538
 for i in range(len(environmentPath)):
     color = roadStatusDictionary[environmentPath].color
     navigation = londonDataDictionary[environmentPath].streetName
-    ArdurinoRun(color, navigation)    
+    ArduinoRun(color, navigation)
     while True:
         time.sleep(3)   # Delay for 1 minute (7 seconds).
         
