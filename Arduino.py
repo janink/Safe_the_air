@@ -1,35 +1,39 @@
-import serial # you need to install the pySerial :pyserial.sourceforge.net
+from pyfirmata import Arduino, util
 import time
-# your Serial port should be different!
-arduino = serial.Serial('/dev/tty.usbmodem1411', 9600)
+ard = Arduino('/dev/cu.usbmodem1411')
 
-def onOffFunction(counter):
-    command = 'on'
-      #raw_input("Type something..: (on/ off / bye )");
-    if command =="on" and counter<=5:
-        print counter
-        print "The LED is on..."
-        time.sleep(1)
-        arduino.write('H')
-        counter += 1
-        onOffFunction(counter)
 
-    elif command =="off":
-        print "The LED is off..."
-        time.sleep(1)
-        arduino.write('L')
-        onOffFunction()
-        arduino.close()
-    elif command =="bye":
-        print "See You!..."
-        time.sleep(1)
-        arduino.close()
+
+
+
+def onOffFunction(command):
+
+    if command =="G":
+        ard.digital[8].write(1)
+        time.sleep(5)
+        ard.digital[8].write(0)
+        pass
+    elif command == "Y":
+        ard.digital[10].write(1)
+        time.sleep(5)
+        ard.digital[10].write(0)
+
+    elif command == "R":
+        ard.digital[12].write(1)
+        time.sleep(5)
+        ard.digital[12].write(0)
     else:
-        print "Sorry..type another thing..!"
-        onOffFunction()
-
-time.sleep(2) #waiting the initialization...
+        ard.digital[8].write(0)
 
 
 
-onOffFunction(0)
+def streetNameShow(streetname):
+    LCD(streetname)
+
+def ArduinoRun(color, streetname):
+    onOffFunction(color)
+    streetNameShow(streetname)
+
+
+
+ArduinoRun('Y', 'street1')
