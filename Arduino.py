@@ -3,7 +3,7 @@ import time
 # your Serial port should be different!
 arduino = serial.Serial('/dev/tty.usbmodem1411', 9600)
 
-def onOffFunction():
+def onOffFunction(counter):
     command = 'on'
       #raw_input("Type something..: (on/ off / bye )");
     if command =="on" and counter<=5:
@@ -11,8 +11,9 @@ def onOffFunction():
         print "The LED is on..."
         time.sleep(1)
         arduino.write('H')
-        onOffFunction()
-        counter+=1
+        counter += 1
+        onOffFunction(counter)
+
     elif command =="off":
         print "The LED is off..."
         time.sleep(1)
@@ -31,4 +32,4 @@ time.sleep(2) #waiting the initialization...
 
 
 
-onOffFunction()
+onOffFunction(0)
