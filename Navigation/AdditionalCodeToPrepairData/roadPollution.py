@@ -14,7 +14,7 @@ dictionary['Lewisham'] = 1
 dictionary['Lambeth'] = 2
 dictionary['Barnet'] = 1
 dictionary['Hammersmith and Fulham'] = 2
-dictionary['Richmond'] = 2
+dictionary['Richmond upon Thames'] = 2
 dictionary['Barking and Dagenham'] =	1
 dictionary['Southwark'] = 2
 dictionary['Enfield'] = 1
@@ -32,7 +32,7 @@ dictionary['Hillingdon'] = 2
 dictionary['Bexley'] = 2
 dictionary['Ealing'] = 2
 dictionary['Bromley'] = 2
-dictionary['Kingston'] = 1
+dictionary['Kingston upon Thames'] = 1
 dictionary['Newham'] = 1
 dictionary['Croydon'] = 1
 dictionary['Tower Hamlets'] = 2
@@ -41,6 +41,8 @@ dictionary['Brent'] = 2
 
 
 for i in range(2, london.max_row+1):
+    if london['G'+str(i)].value == None:
+        london['G'+str(i)] = 'Hillingdon'
     london['H'+str(i)] = dictionary[london['G'+str(i)].value]
 
 
