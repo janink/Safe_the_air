@@ -7,7 +7,7 @@ from Arduino import *
 #neighboorsDictionary = getNeighboors(neighboors)
 londonDataDictionary = getLondonData(london)#, neighboorsDictionary)
 roadStatusDictionary = getRoadStatus(london)
-print roadStatusDictionary
+#print roadStatusDictionary
 
 '''
 start = '331357'
@@ -17,12 +17,13 @@ shortestPath = findshortestPath(start, goal, londonDataDictionary)
 environmentPath = findPathEnvironment(londonDataDictionary, shortestPath)
 '''
 #for testing
-environmentPath = ['331357', '2496401', '2496401', '331357', '2496401', '2496401', '331357', '2495383', '2495401', '331357', '2496402', '2498957', '2498964', '2498965', '2496401', '2499055', '2496401', '2499080', '2496401', '2499180', '2499181', '2499182', '2499578', '2499579', '2499581', '2499582']
-#color = ['Y','G','G','Y','G','G','Y']
+environmentPath = ['331357', '2496401', '2496401', '331357', '2496401', '2496401', '331357', '2495383', '2495401',  '331357', '2496402', '2498957']
+
+#environmentPath = ['331357', '2495341', '2495342', '2495343', '2495344', '2495380', '2495382', '2495383', '2495401', '2496401', '2496402', '249895']
 
 
 for i in range(len(environmentPath)):
-    print i
+    #print i
     color = roadStatusDictionary[environmentPath[int(i)]].color
     #navigation = londonDataDictionary[environmentPath].streetName
     navigation= "streetname"
