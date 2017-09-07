@@ -3,12 +3,12 @@
   <title></title>
   <autotransaction active="0"/>
   <evaluateDefaultValues active="0"/>
-  <layer-tree-group expanded="1" checked="Qt::PartiallyChecked" name="">
+  <layer-tree-group expanded="1" checked="Qt::Unchecked" name="">
     <customproperties/>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="StreetLatLong20170906153832291" source="C:/Users/j.schacht/Documents/GitHub/Safe_the_air/GIS/shapefiles/StreetLatLong.shp" name="StreetLatLong">
       <customproperties/>
     </layer-tree-layer>
-    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Checked" id="London_Quarters20170906153830300" source="C:/Users/j.schacht/Documents/GitHub/Safe_the_air/GIS/shapefiles/London_Quarters.shp" name="London_Quarters">
+    <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="London_Quarters20170906153830300" source="C:/Users/j.schacht/Documents/GitHub/Safe_the_air/GIS/shapefiles/London_Quarters.shp" name="London_Quarters">
       <customproperties/>
     </layer-tree-layer>
     <layer-tree-layer expanded="1" providerKey="ogr" checked="Qt::Unchecked" id="gis_osm_roads_free_120170906153824859" source="C:/Users/j.schacht/Documents/GitHub/Safe_the_air/GIS/shapefiles/gis.osm_roads_free_1.shp" name="gis.osm_roads_free_1">
@@ -54,9 +54,9 @@
         <legendlayerfile isInOverview="0" layerid="StreetLatLong20170906153832291" visible="0"/>
       </filegroup>
     </legendlayer>
-    <legendlayer drawingOrder="-1" open="true" checked="Qt::Checked" name="London_Quarters" showFeatureCount="0">
+    <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="London_Quarters" showFeatureCount="0">
       <filegroup open="true" hidden="false">
-        <legendlayerfile isInOverview="0" layerid="London_Quarters20170906153830300" visible="1"/>
+        <legendlayerfile isInOverview="0" layerid="London_Quarters20170906153830300" visible="0"/>
       </filegroup>
     </legendlayer>
     <legendlayer drawingOrder="-1" open="true" checked="Qt::Unchecked" name="gis.osm_roads_free_1" showFeatureCount="0">
@@ -122,12 +122,12 @@
           <symbol alpha="1" clip_to_extent="1" type="fill" name="0">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="color" v="53,221,15,255"/>
+              <prop k="color" v="189,69,202,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
               <prop k="offset_unit" v="MM"/>
-              <prop k="outline_color" v="128,152,72,255"/>
+              <prop k="outline_color" v="0,0,0,255"/>
               <prop k="outline_style" v="solid"/>
               <prop k="outline_width" v="0.26"/>
               <prop k="outline_width_unit" v="MM"/>
@@ -137,7 +137,7 @@
           <symbol alpha="1" clip_to_extent="1" type="fill" name="1">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="color" v="241,238,32,255"/>
+              <prop k="color" v="64,203,51,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
@@ -152,7 +152,7 @@
           <symbol alpha="1" clip_to_extent="1" type="fill" name="2">
             <layer pass="0" class="SimpleFill" locked="0">
               <prop k="border_width_map_unit_scale" v="0,0,0,0,0,0"/>
-              <prop k="color" v="151,7,26,255"/>
+              <prop k="color" v="212,111,39,255"/>
               <prop k="joinstyle" v="bevel"/>
               <prop k="offset" v="0,0"/>
               <prop k="offset_map_unit_scale" v="0,0,0,0,0,0"/>
